@@ -1,0 +1,11 @@
+#sidebarCollapse {
+  color: #fff;
+  background: transparent;
+  outline: none;
+  margin: 0 20px;
+}
+
+#sidebarCollapse:hover {
+  border: #fff solid 1px;
+  outline: none;
+}

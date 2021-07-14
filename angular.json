@@ -24,9 +24,16 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",              
+              "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +126,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "luca"
+    }
+  },
+  "defaultProject": "luca",
+  "cli": {
+    "analytics": "9957d3fb-b848-4f44-8a02-122227159166"
+  }
 }
