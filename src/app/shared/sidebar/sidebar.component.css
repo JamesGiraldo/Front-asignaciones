@@ -1,8 +1,6 @@
 /* contenedor del sidebar */
 #sidebar {
-  min-width: 250px;
-  max-width: 250px; 
-  
+  width: 250px; 
   background-color: #343a40;
   color: #fff;
   transition: all 0.4s;
@@ -44,17 +42,6 @@
   background: #fff;
   color: black;
 }
-
-/* a[data-toggle="collapse"] {
-  position: relative;
-}
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-} */
 
 @media (max-width: 800px) {
   /* cuando la pantalle sea más pqueña  */

@@ -1,3 +1,22 @@
-footer{  
-    background-color: red !important;
+footer {
+  width: auto;
+  margin-left: 250px;
+  transition: all 0.4s;
+  box-sizing: border-box;
+}
+
+footer.active {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 800px) {
+  /* cuando la pantalle sea más pqueña  */
+  footer {
+    /* ocultar el sidebar */
+    margin-left: 0px;
+  }
+  /* cuando pase la clase active no tener ningún margen  */
+  footer.active {
+    margin-left: 0px;
+  }
 }

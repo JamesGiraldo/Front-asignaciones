@@ -1,9 +1,23 @@
-.contenedor{
-    width: 100%;
-    margin-left: 250px;  
-    transition: all 0.4s;
+.contenedor {
+  width: auto;
+  height: 100%;
+  margin-left: 250px;
+  transition: all 0.4s;   
+  overflow-y: scroll; 
 }
 
 .contenedor.active {
-    margin-left: 0;
-} 
+  margin-left: 0 !important;
+}
+
+@media (max-width: 800px) {
+  /* cuando la pantalle sea más pqueña  */
+  .contenedor {
+    /* ocultar el sidebar */
+    margin-left: 0px;
+  }
+  /* cuando pase la clase active no tener ningún margen  */
+  .contenedor.active {
+    margin-left: 0px;
+  }
+}

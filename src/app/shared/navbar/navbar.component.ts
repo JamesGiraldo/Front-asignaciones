@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   toggleNavbar() {
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');       
+        $('#sidebar, .contenedor, .footer').toggleClass('active');       
         $('.collapse.in').toggleClass('in');
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         document.getElementById("bodyContent").style.width = "100%";
