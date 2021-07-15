@@ -4,8 +4,9 @@
   background-color: #343a40;
   color: #fff;
   transition: all 0.4s;
-  position: absolute;
+  position: fixed;
   height: 100%;
+  top: 67px;
 }
 
 /* cuando pase la clase active establecer un margen izquierdo para esconder  */

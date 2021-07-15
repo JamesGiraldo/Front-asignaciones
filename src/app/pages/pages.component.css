@@ -1,5 +1,6 @@
 .contenedor {
-  width: auto;
+  width: auto; 
+  margin-top: 6%;
   height: 100%;
   margin-left: 250px;
   transition: all 0.4s;   
@@ -15,9 +16,25 @@
   .contenedor {
     /* ocultar el sidebar */
     margin-left: 0px;
+    margin-top: 17%;
   }
   /* cuando pase la clase active no tener ningún margen  */
   .contenedor.active {
     margin-left: 0px;
+    margin-top: 17%;
+  }
+}
+
+@media (max-width: 425px) {
+  /* cuando la pantalle sea más pqueña  */
+  .contenedor {
+    /* ocultar el sidebar */
+    margin-left: 0px;
+    margin-top: 24%;
+  }
+  /* cuando pase la clase active no tener ningún margen  */
+  .contenedor.active {
+    margin-left: 0px;
+    margin-top: 24%;
   }
 }
