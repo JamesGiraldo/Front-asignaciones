@@ -1,0 +1,60 @@
+<div class="pb-4 pt-2">
+    <div class="row mb-2 animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Cursos</h4>
+                    <input type="text" class="form-control" placeholder="Buscar curso.." />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2 animated fadeIn fast" *ngIf="cargando">
+        <div class="col-12">
+            <div class="alert alert-dark text-center">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa fa-spinner fa-3x"></i>
+                <p class="mb-0">Por favor espere...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 animated fadeIn fast" *ngIf="!cargando">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Total de cursos ( {{ cursos.length }} )</h4>
+                    <h6 class="card-subtitle">Todos los cursos en la aplicación</h6>
+                    <div class="table-responsive mt-3">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Nombre</th>
+                                    <th>Horario</th>
+                                    <th>Fecha de Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let curso of cursos">
+                                    <td>{{ curso.nombre }}</td>
+                                    <td>{{ curso.horario }}</td>
+                                    <td>{{ curso.fecha_inicio | date:'dd-MM-yyy' }}</td>
+                                    <td>{{ curso.fecha_fin | date:'dd-MM-yyy' }}</td>
+                                    <td class="tex-center">{{ curso.state  ? 'Activo' : 'Desactivado'}}</td>
+                                    <td class="text-center">
+                                        <span class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
+                                        <span class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

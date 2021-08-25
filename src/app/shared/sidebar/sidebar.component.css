@@ -7,6 +7,7 @@
   position: fixed;
   height: 100%;
   top: 67px;
+  overflow-y: scroll;
 }
 
 /* cuando pase la clase active establecer un margen izquierdo para esconder  */
@@ -17,7 +18,7 @@
 /* cabecera del sidebar */
 #sidebar .sidebar-header {
   padding: 20px;
-  background-color: #343a40;
+  background-color: #343a40;  
 }
 
 /* lista desordenada */

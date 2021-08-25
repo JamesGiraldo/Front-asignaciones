@@ -1,0 +1,58 @@
+<div class="pb-4 pt-2">
+    <div class="row mb-2 animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Estudiantes</h4>
+                    <input type="text" class="form-control" placeholder="Buscar usuario.." />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2 animated fadeIn fast" *ngIf="cargando">
+        <div class="col-12">
+            <div class="alert alert-dark text-center">
+                <h4 class="alert-heading">Cargando</h4>
+                <i class="fa fa-spin fa fa-spinner fa-3x"></i>
+                <p class="mb-0">Por favor espere...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 animated fadeIn fast" *ngIf="!cargando">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Total de estudiantes ( {{ estudiantes.length }} )</h4>
+                    <h6 class="card-subtitle">Todos los estudiantes en la aplicación</h6>
+                    <div class="table-responsive mt-3">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Correo</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th class="w50">edad</th>
+                                    <th class="text-nowrap w100">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let estudiante of estudiantes">
+                                    <td>{{ estudiante.email }}</td>
+                                    <td>{{ estudiante.nombre }}</td>
+                                    <td>{{ estudiante.apellido }}</td>
+                                    <td>{{ estudiante.edad }}</td>
+                                    <td class="text-center">
+                                        <span class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
+                                        <span class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
