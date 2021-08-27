@@ -51,7 +51,7 @@ export class AuthService {
         const { id, nombre, apellido, email, edad } = resp.usuario;
         /** Creando la instancia del objeto usuario  */
         this.usuario = new Usuario(id, nombre, apellido, email, edad, '');
-        console.log(this.usuario);
+        // console.log(this.usuario);
         /** guardando en el localStorage */
         this.guardarLocalStorage(resp['token']);
         return true;

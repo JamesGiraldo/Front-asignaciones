@@ -18,7 +18,7 @@ import { CursosComponent } from './mantenimientos/cursos/cursos.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { EstudiantesComponent } from './mantenimientos/estudiantes/estudiantes.component';
 import { PostsComponent } from './mantenimientos/posts/posts.component';
-
+import { RolesComponent } from './mantenimientos/roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { PostsComponent } from './mantenimientos/posts/posts.component';
     CursosComponent,
     EstudiantesComponent,
     UsuariosComponent,
-    PostsComponent
+    PostsComponent,
+    RolesComponent
   ],
   exports: [
     DashboardComponent,
@@ -37,7 +38,8 @@ import { PostsComponent } from './mantenimientos/posts/posts.component';
     CursosComponent,
     EstudiantesComponent,
     UsuariosComponent,
-    PostsComponent
+    PostsComponent,
+    RolesComponent
   ],
   imports: [
     CommonModule,

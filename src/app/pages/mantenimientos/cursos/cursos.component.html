@@ -4,7 +4,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Cursos</h4>
-                    <input type="text" class="form-control" placeholder="Buscar curso.." />
+                    <input type="text" class="form-control" placeholder="Buscar curso.." 
+                    (keyup)="buscar( txtTermino.value )" #txtTermino/>
                 </div>
             </div>
         </div>

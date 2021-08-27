@@ -4,7 +4,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Usuarios</h4>
-                    <input type="text" class="form-control" placeholder="Buscar usuario.." />
+                    <input type="text" class="form-control" placeholder="Buscar usuario..."
+                    (keyup)="buscar( txtTermino.value )" #txtTermino />
                 </div>
             </div>
         </div>
@@ -30,9 +31,9 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Correo</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
+                                    <th>Correo</th>
                                     <th class="w50">edad</th>
                                     <th class="">Roles</th>
                                     <th class="text-nowrap w100">Acciones</th>
@@ -40,9 +41,13 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let usuario of usuarios">
-                                    <td>{{ usuario.email }}</td>
-                                    <td>{{ usuario.nombre }}</td>
+                                    <td>
+                                        <a href="/">
+                                            {{ usuario.nombre }}
+                                        </a>
+                                    </td>
                                     <td>{{ usuario.apellido }}</td>
+                                    <td>{{ usuario.email }}</td>
                                     <td>{{ usuario.edad }}</td>
                                     <td>
                                         <select class="form-control">

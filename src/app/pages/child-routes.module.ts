@@ -12,6 +12,8 @@ import { EstudiantesComponent } from './mantenimientos/estudiantes/estudiantes.c
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { PostsComponent } from './mantenimientos/posts/posts.component';
 
+import { RolesComponent } from './mantenimientos/roles/roles.component';
+
 const childRoutes: Routes = [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
 
@@ -21,6 +23,7 @@ const childRoutes: Routes = [
       { path: 'estudiantes', component: EstudiantesComponent, data: { titulo: 'Estudiantes' } },
       { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios' } },
       { path: 'posts', component: PostsComponent, data: { titulo: 'Publicaciones' } },
+      { path: 'roles', component: RolesComponent, data: { titulo: 'Roles' } },
 ]
 
 @NgModule({

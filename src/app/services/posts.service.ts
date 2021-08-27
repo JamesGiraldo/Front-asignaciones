@@ -17,7 +17,7 @@ export class PostsService {
 
   getPosts() {
     return this.http.get(`${base_url}/posts`, this.authService.headers).pipe(
-      delay(500)
+      delay(100)
     );
   }
 

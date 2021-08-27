@@ -16,13 +16,13 @@ export class UsuarioService {
 
   getUsuarios(){
     return this.http.get(`${base_url}/users`, this.authService.headers ).pipe(
-       delay(500)
+       delay(100)
       )
   }
 
   getEstudents(){
     return this.http.get(`${base_url}/students`, this.authService.headers ).pipe(
-       delay(500)
+       delay(100)
       )
   }
 }

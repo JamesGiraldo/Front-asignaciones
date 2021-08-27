@@ -10,12 +10,12 @@ const base_url = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class CursosService {
+export class RolesService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getCursos() {
-    return this.http.get(`${base_url}/cursos`, this.authService.headers).pipe(
+  getRoles() {
+    return this.http.get(`${base_url}/roles`, this.authService.headers).pipe(
       delay(100)
     );
   }

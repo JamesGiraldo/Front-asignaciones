@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   login_in() {
-    console.log(this.loginForm.value);
     this.authService.sing_in(this.loginForm.value).subscribe(resp => {
 
       if (this.loginForm.get('remember').value) {
@@ -60,7 +59,6 @@ export class LoginComponent implements OnInit {
       });
 
     }, (err) => {
-      console.log('Error', err.error.message, 'error');
       Swal.fire({
         title: 'Error!',
         text: err.error.message,

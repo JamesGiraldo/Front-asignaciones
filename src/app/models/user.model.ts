@@ -8,8 +8,7 @@ export class Usuario {
         public email: string,
         public edad: number,
         public password?: string,
-        public roles?: string[],
-        public role?: string
+        public roles?: string[]
     ) { }
 
 }
