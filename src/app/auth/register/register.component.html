@@ -26,14 +26,14 @@
                                 </span>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="edad" class="float-left">edad*</label>
                                 <input type="number" class="form-control" id="edad" placeholder="Ingrese su edad"
                                     required minlength="10" min="10" max="100" formControlName="edad" name="edad" />
                                 <span class="animated fadeIn text-danger" *ngIf="campoValido('edad')">
                                     * la edad es obligatoria
                                 </span>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="email" class="float-left">Email*</label>
@@ -65,7 +65,7 @@
                                     * La confirmacion de contraseña es obligatoria
                                 </span>
                                 <div class="form-group">
-                                    <span class="animated fadeIn text-danger" *ngIf="contrasenasValidas()">
+                                    <span class="animated fadeIn text-danger" *ngIf="contrasenasNoValidas()">
                                         * Las contraseñas no coinciden
                                     </span>
                                 </div>

@@ -1,0 +1,80 @@
+<div class="container pt-2 pb-5">
+    <div class="row mb-2">
+        <div class="col">
+            <h2 class="animated fadeIn fast">Actualizar datos de {{ usuario.nombre | uppercase }}</h2>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <button (click)="onRegresar()" title="Cursos" class="btn botonsito btn-primary">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <form (ngSubmit)="EviarDatos()" [formGroup]="FormularioUpdate" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <input formControlName="nombre" class="form-control" id="nombre" type="search"
+                                        placeholder="Nombre del usuario" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('nombre')">
+                                        * El nombre es obligatorio
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horario" class="col-form-label">Apellido:</label>
+                                    <input formControlName="apellido" type="search" name="apellido" class="form-control" id="apellido"
+                                        placeholder="Apellido del usuario" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('apellido')">
+                                        * El apellido es obligatorio
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad" class="col-form-label">Edad:</label>
+                                    <input formControlName="edad" type="number" min="10" max="100" name="edad" class="form-control" id="edad" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('edad')">
+                                        * La edad es obligatoria
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-form-label">Email:</label>
+                                    <input formControlName="email" name="email" type="search" class="form-control" id="email" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('email')">
+                                        * El email es obligatorio
+                                    </span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-block btn-info">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-6">
+                            <form (ngSubmit)="asignacion()" [formGroup]="formRole" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Seleccione el rol:</label>
+                                    <select formControlName="role" name="role" class="form-control" placeholder="Seleccione el rol" aria-placeholder="Seleccione el rol">
+                                        <option *ngFor="let role of roles" [value]="role.id">
+                                            {{ role.role }}
+                                        </option>
+                                    </select>
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValidoRole('role')">
+                                        * El rol es requerido
+                                    </span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-block btn-info">Cambiar Rol</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

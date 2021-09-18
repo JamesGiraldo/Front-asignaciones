@@ -4,8 +4,15 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Publicaciones</h4>
-                    <input type="text" class="form-control" placeholder="Buscar publicacion.." 
-                    (keyup)="buscar( txtTermino.value )" #txtTermino/>
+                    <!-- <input type="text" class="form-control" placeholder="Buscar publicacion.." 
+                    (keyup)="buscar( txtTermino.value )" #txtTermino/> -->
+                    <form [formGroup]="buscarForm" (ngSubmit)="buscar( txtTermino.value )"
+                        class="input-group mb-2 mr-sm-2">
+                        <input #txtTermino type="search" class="form-control" placeholder="Buscar publicacion...">
+                        <div class="input-group-prepend">
+                            <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -25,28 +32,46 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Total de publicaciones ( {{ posts.length }} )</h4>
-                    <h6 class="card-subtitle">Todas las publicaciones en la aplicación</h6>
+                    <div class="row">
+                        <div class="col-7">
+                            <h4 class="card-title">Total de publicaciones ( {{ posts.length }} )</h4>
+                            <h6 class="card-subtitle">Todas las publicaciones en la aplicación</h6>
+                        </div>
+                        <div class="col-5">
+                            <button routerLink="/dashboard/post/form/nuevo" class="float-right btn btn-info"> <i class="fa fa-plus-square-o"></i> Nuevo Post</button>
+                        </div>
+                    </div>
                     <div class="table-responsive mt-3">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Contenido</th>
-                                    <th class="text-center">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let post of posts">
-                                    <td>{{ post.title }}</td>
-                                    <td>{{ post.cuerpo }}</td>
-                                    <td class="text-center">
-                                        <span class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
-                                        <span class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div *ngIf="!cargando && posts.length === 0" class="alert alert-warning text-center mt-3 animated fadeIn faster">
+                            <h4 class="alert-heading">No hay registros</h4>
+                            <p>
+                                <i class="fa fa-exclamation fa-2x"></i>
+                            </p>
+                        </div>
+                        <div *ngIf="!cargando && posts.length > 0">
+
+                            <div class="card mb-3 " *ngFor="let post of posts">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <span [routerLink]="['/dashboard', 'post', post.id]" class="label label-danger mr-1 cursor"> <i class="fa fa-eye text-info"></i> </span>
+                                            {{ post.title }}
+                                        </div>
+                                        <div class="col-2">
+                                           <div class="float-right">
+                                                <span [routerLink]="['/dashboard', 'post', 'form', post.id]" class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
+                                                <span (click)="EliminarPost( post, i )" class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                    <p> {{ post.cuerpo }} </p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

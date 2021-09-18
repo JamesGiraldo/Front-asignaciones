@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { delay, map } from 'rxjs/operators';
+import { debounceTime, delay, map } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 import { Usuario } from '../models/user.model';
@@ -44,6 +44,7 @@ export class BusquedasService {
     const url = ` ${base_url}/coleccion/${tipo}/${termino} `;
     return this.http.get<any[]>(url, this.authService.headers)
       .pipe(
+        debounceTime(350),
         map((resp: any) => {
           switch (tipo) {
             case 'users':

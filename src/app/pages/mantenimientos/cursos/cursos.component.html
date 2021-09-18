@@ -4,8 +4,13 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Cursos</h4>
-                    <input type="text" class="form-control" placeholder="Buscar curso.." 
-                    (keyup)="buscar( txtTermino.value )" #txtTermino/>
+                    <form [formGroup]="buscarForm" (ngSubmit)="buscar( txtTermino.value )"
+                        class="input-group mb-2 mr-sm-2">
+                        <input #txtTermino type="search" class="form-control" placeholder="Buscar curso...">
+                        <div class="input-group-prepend">
+                            <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -25,34 +30,73 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Total de cursos ( {{ cursos.length }} )</h4>
-                    <h6 class="card-subtitle">Todos los cursos en la aplicación</h6>
+                    <div class="row">
+                        <div class="col-7">
+                            <h4 class="card-title">Total de cursos ( {{ cursos.length }} )</h4>
+                            <h6 class="card-subtitle">Todos los cursos en la aplicación</h6>
+                        </div>
+                        <div class="col-5">
+                            <button routerLink="/dashboard/curso/form/nuevo" class="float-right btn btn-info"> <i
+                                    class="fa fa-plus-square-o"></i> Nuevo Curso</button>
+                        </div>
+                    </div>
                     <div class="table-responsive mt-3">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>Nombre</th>
-                                    <th>Horario</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Fecha Fin</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let curso of cursos">
-                                    <td>{{ curso.nombre }}</td>
-                                    <td>{{ curso.horario }}</td>
-                                    <td>{{ curso.fecha_inicio | date:'dd-MM-yyy' }}</td>
-                                    <td>{{ curso.fecha_fin | date:'dd-MM-yyy' }}</td>
-                                    <td class="tex-center">{{ curso.state  ? 'Activo' : 'Desactivado'}}</td>
-                                    <td class="text-center">
-                                        <span class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
-                                        <span class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div *ngIf="!cargando && cursos.length === 0"
+                            class="alert alert-warning text-center mt-3 animated fadeIn faster">
+                            <h4 class="alert-heading">No hay registros</h4>
+                            <p>
+                                <i class="fa fa-exclamation fa-2x"></i>
+                            </p>
+                        </div>
+
+                        <div *ngIf="!cargando && cursos.length > 0"  class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col mb-3 mt-3" *ngFor="let i = index; let curso of cursos">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <span [routerLink]="['/dashboard', 'curso', curso.id]"  class="label label-danger mr-1 cursor"> <i class="fa fa-eye text-info"></i> </span>
+                                            </div>
+                                            <div class="col-11">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5 class="card-title"> {{ curso.nombre }} </h5>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="float-right">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <h6 class="text-muted">{{ curso.state  ? 'Activo' : 'Desactivado'}}</h6>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <i *ngIf="curso.state"  class="text-success bi bi-bookmark-check-fill"></i>
+                                                                    <i *ngIf="!curso.state"  class="text-danger bi bi-bookmark-x-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body mb-3">
+                                            <small class=""> <b>Inicializa: </b>  {{ curso.fecha_inicio | date:'dd-MM-yyy' }}</small> <br>
+                                            <small class=""> <b>Termina: </b>  {{ curso.fecha_fin | date:'dd-MM-yyy' }}</small>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <samp>
+                                                {{ curso.horario | uppercase }}
+                                            </samp>
+                                        </div>
+                                        <!-- <td class="text-center">
+                                            <span [routerLink]="['/dashboard', 'curso', 'form', curso.id]"
+                                            class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
+                                            <span  (click)="EliminarCurso( curso, i )"
+                                            class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
+                                        </td> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

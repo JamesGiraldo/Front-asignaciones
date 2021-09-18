@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivationEnd, Router } from '@angular/router';
 
-import { NotificationsService } from 'angular2-notifications';
 import Swal from 'sweetalert2'
 
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/models/user.model';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,7 @@ import { Usuario } from 'src/app/models/user.model';
 export class LoginComponent implements OnInit {
 
   public formSubmitted: boolean = false;
+  public titulo: string = "";
   public loginForm = this.fb.group({
     email: [localStorage.getItem('email') || '', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {
     this.user =  this.authService.usuario;
+    this.getArgumentosRuta()
   }
 
   ngOnInit(): void {
@@ -73,6 +75,18 @@ export class LoginComponent implements OnInit {
 
   irRegister() {
     this.router.navigateByUrl('/register');
+  }
+
+  getArgumentosRuta() {
+    this.router.events
+      .pipe(
+        filter((event: any) => event instanceof ActivationEnd),
+        filter((event: ActivationEnd) => event.snapshot.firstChild === null),
+        map((event: ActivationEnd) => event.snapshot.data),
+      ).subscribe(({ titulo }) => {
+        this.titulo = titulo;
+        document.title = `Asignacion - ${ titulo }`;
+      });
   }
 
 }

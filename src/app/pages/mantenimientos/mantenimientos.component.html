@@ -7,54 +7,58 @@
       </div>
   </div>
 </div>
-<div *ngIf="!cargando" class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col mb-3">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Usuarios - {{ usuarios.length }} </h5>
-        <h6 class="card-subtitle mb-2 text-muted">Usuarios del sistema</h6>
-        <p class="card-text">Administrar usuarios existentes del sistema</p>
-        <a routerLink="/dashboard/usuarios" class="card-link">Ver usuarios</a>
+<div *ngIf="!cargando">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Posts - {{ posts.length }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Posts del sistema</h6>
+          <p class="card-text">Administrar publicaciones existentes del sistema</p>
+          <a routerLink="/dashboard/posts" class="card-link">Ver posts</a>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Estudiantes - {{ estudiantes.length }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Estudiantes del sistema</h6>
+          <p class="card-text">Administrar estudiantes existentes del sistema</p>
+          <a routerLink="/dashboard/estudiantes" class="card-link">Ver estudiantes</a>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Cursos - {{ cursos.length }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Cursos del sistema</h6>
+          <p class="card-text">Administrar cursos existentes del sistema</p>
+          <a routerLink="/dashboard/cursos" class="card-link">Ver cursos</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col mb-3">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Estudiantes - {{ estudiantes.length }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Estudiantes del sistema</h6>
-        <p class="card-text">Administrar estudiantes existentes del sistema</p>
-        <a routerLink="/dashboard/estudiantes" class="card-link">Ver estudiantes</a>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col mb-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Usuarios - {{ usuarios.length }} </h5>
+          <h6 class="card-subtitle mb-2 text-muted">Usuarios del sistema</h6>
+          <p class="card-text">Administrar usuarios existentes del sistema</p>
+          <a routerLink="/dashboard/usuarios" class="card-link">Ver usuarios</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col mb-3">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Cursos - {{ cursos.length }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Cursos del sistema</h6>
-        <p class="card-text">Administrar cursos existentes del sistema</p>
-        <a routerLink="/dashboard/cursos" class="card-link">Ver cursos</a>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-3">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Posts - {{ posts.length }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Posts del sistema</h6>
-        <p class="card-text">Administrar publicaciones existentes del sistema</p>
-        <a routerLink="/dashboard/posts" class="card-link">Ver posts</a>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-3">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Roles</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Roles del sistema</h6>
-        <p class="card-text">Roles de administrador existentes del sistema</p>
-        <a routerLink="/dashboard/roles" class="card-link">Ver roles</a>
+    <div class="col mb-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Roles - {{ roles.length }} </h5>
+          <h6 class="card-subtitle mb-2 text-muted">Roles del sistema</h6>
+          <p class="card-text">Roles de administrador existentes del sistema</p>
+          <a routerLink="/dashboard/roles" class="card-link">Ver roles</a>
+        </div>
       </div>
     </div>
   </div>

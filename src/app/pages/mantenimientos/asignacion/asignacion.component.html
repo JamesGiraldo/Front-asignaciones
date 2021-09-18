@@ -1,0 +1,63 @@
+<div class="row mb-2 animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12 text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h1 class="text-center">Asignación de estudiante.</h1>
+    </div>
+</div>
+
+<div class="row py-3 animated fadeIn fast">
+    <div class="col-md-12">
+        <form (ngSubmit)="asignacion()" [formGroup]="asignacionForm" autocomplete="off">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Estudiante</h4>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Seleccione el estudiante</label>
+                                <select formControlName="estudiante" name="estudiante" class="form-control">
+                                    <option *ngFor="let estudiante of estudiantes" [value]="estudiante.id">
+                                        {{ estudiante.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('estudiante')">
+                                * El estudiante es obligatorio
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Curso</h4>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Seleccione el curso</label>
+                                <select formControlName="curso" name="curso" class="form-control" aria-placeholder="Seleccione el curso">
+                                    <option *ngFor="let curso of cursos" [value]="curso.id">
+                                        {{ curso.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('curso')">
+                                * El curso es obligatorio
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-4">
+                <div class="col-12">
+                    <button class="text-center btn-block btn btn-info"> Asignar estudiante </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

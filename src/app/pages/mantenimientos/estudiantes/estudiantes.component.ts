@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../../models/user.model';
 import { UsuarioService } from '../../../services/usuario.service';
 import { BusquedasService } from '../../../services/busquedas.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-estudiantes',
@@ -15,7 +16,11 @@ export class EstudiantesComponent implements OnInit {
   public estudiantes: Usuario[] = [];
   public estudiantesTemporales: Usuario[] = [];
 
-  constructor( private usuarioService: UsuarioService, private busquedasService: BusquedasService ) { }
+  public buscarForm = this.fb.group({
+    termino: ['', [Validators.required, Validators.minLength(3)]]
+  })
+
+  constructor( private usuarioService: UsuarioService, private busquedasService: BusquedasService, private fb: FormBuilder ) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();

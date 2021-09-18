@@ -1,0 +1,111 @@
+<div class="container animated fadeIn fast mt-4 mb-5">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="animated fadeIn fast">Informacion del curso<i *ngIf="cargando" class="fa fa-refresh fa-spin"></i>
+            </h1>
+        </div>
+        <div class="col-3">
+            <div class="float-right">
+                <button [routerLink]="['/dashboard', 'cursos']" title="Atras" class="btn botonsito btn-secondary">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4 mb-4">
+        <div *ngIf="cargando" class="alert alert-info text-center mt-3 animated fadeIn faster">
+            <h4 class="alert-heading">Cargando</h4>
+            <p>
+                <i class="fa fa-refresh fa-spin fa-5x"></i>
+            </p>
+            <p class="mb-0">
+                Espere por favor...
+            </p>
+        </div>
+        <div *ngIf="!cargando" class="animated fadeIn fast tarjetas">
+            <div class="row mb-5 animated fadeIn fast" *ngIf="!cargando">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="card-title"> <i *ngIf="cargando" class="fa fa-refresh fa-spin"></i>
+                                        <small *ngIf="!cargando"> {{ curso.nombre | uppercase }} </small>
+                                    </h3>
+                                </div>
+                                <div class="col">
+                                    <div class="float-right">
+                                        <button class="btn btn-success mr-1" title="Editar"
+                                            [routerLink]="['/dashboard', 'curso', 'form', curso.id]">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                        <button (click)="DestroyCurso( curso.id ) " class="btn btn-danger"
+                                            title="Borrar">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <span *ngIf="curso.state" class="d-inline-block ml-1" tabindex="0">
+                                            <button class="btn btn-success" type="button">Activo</button>
+                                        </span>
+                                        <span *ngIf="!curso.state" class="d-inline-block ml-1" tabindex="0">
+                                            <button class="btn btn-danger" type="button">No Activo</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text"> <span>Horario: </span> {{ curso.horario }} </p>
+                            <p class="card-text"> <span>Fecha de inicio: </span> {{ curso.fecha_inicio |
+                                date:'dd-MM-yyy' }}</p>
+                            <p class="card-text"> <span>Fecha de finalizacion: </span> {{ curso.fecha_fin |
+                                date:'dd-MM-yyy' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5 animated fadeIn fast" *ngIf="!cargando">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Total de estudiantes ( {{ curso.users.length }} )</h4>
+                        <h6 class="card-subtitle">Todos los estudiantes asignados a este curso</h6>
+                        <div class="table-responsive mt-3">
+                            <div *ngIf="!cargando && curso.users.length === 0"
+                                class="alert alert-warning text-center mt-3 animated fadeIn faster">
+                                <h4 class="alert-heading">No hay estudiantes asignados a este curso</h4>
+                                <p>
+                                    <i class="fa fa-exclamation fa-2x"></i>
+                                </p>
+                            </div>
+                            <table *ngIf="!cargando && curso.users.length > 0" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Correo</th>
+                                        <th class="w50">edad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let i = index; let estudiante of curso.users">
+                                        <td>{{ i + 1 }}</td>
+                                        <td>
+                                            <a [routerLink]="['/dashboard', 'estudiante', estudiante.id]">
+                                                {{ estudiante.nombre }}
+                                            </a>
+                                        </td>
+                                        <td>{{ estudiante.apellido }}</td>
+                                        <td>{{ estudiante.email }}</td>
+                                        <td>{{ estudiante.edad }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

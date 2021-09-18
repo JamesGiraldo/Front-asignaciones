@@ -1,3 +1,5 @@
+import { Curso } from "./curso.model";
+import { Role } from "./role.model";
 
 export class Usuario {
 
@@ -8,7 +10,8 @@ export class Usuario {
         public email: string,
         public edad: number,
         public password?: string,
-        public roles?: string[]
+        public roles?: Role[],
+        public cursos?: Curso[]
     ) { }
 
 }

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // modulos externos
-import { SimpleNotificationsModule } from 'angular2-notifications';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // modulos
 import { RouterModule } from '@angular/router';
@@ -26,8 +25,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SimpleNotificationsModule.forRoot(),
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
   ],
   exports: [
     RegisterComponent,

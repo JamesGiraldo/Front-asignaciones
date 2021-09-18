@@ -20,6 +20,10 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  get id() {
+    return this.usuario.id || '';
+  }
+
   /** token del localStorage */
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -50,7 +54,7 @@ export class AuthService {
         /** desestructurar la información de la respuesta */
         const { id, nombre, apellido, email, edad } = resp.usuario;
         /** Creando la instancia del objeto usuario  */
-        this.usuario = new Usuario(id, nombre, apellido, email, edad, '');
+        this.usuario = new Usuario(id, nombre, apellido, email, edad, '', resp.roles);
         // console.log(this.usuario);
         /** guardando en el localStorage */
         this.guardarLocalStorage(resp['token']);

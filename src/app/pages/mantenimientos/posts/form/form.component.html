@@ -1,0 +1,33 @@
+<div class="pb-4 pt-2">
+    <div class="row mb-5 animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form (ngSubmit)="save()" autocomplete="off" [formGroup]="Formulario">
+                        <div class="form-group">
+                            <label for="nombre" class="col-form-label">Titulo:</label>
+                            <input formControlName="title" type="text" class="form-control" id="title"
+                                placeholder="Titulo de la publicacion" />
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('title')">
+                                * El titulo es obligatorio
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="horario" class="col-form-label">Contenido:</label>
+                            <textarea formControlName="cuerpo" name="cuerpo" class="form-control" id="cuerpo"
+                                placeholder="Contenido de la publicacion" cols="30" rows="10"></textarea>
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('cuerpo')">
+                                * El contenido es obligatorio
+                            </span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

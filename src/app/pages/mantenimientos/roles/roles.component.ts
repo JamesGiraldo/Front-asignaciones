@@ -30,10 +30,10 @@ export class RolesComponent implements OnInit {
   constructor( private router: Router, private rolesService: RolesService ) { }
 
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.cargarRoles();
   }
 
-  cargarUsuarios(){
+  cargarRoles(){
     this.cargando = true;
     this.rolesService.getRoles().subscribe( (roles: any)  => {
       this.roles = roles;

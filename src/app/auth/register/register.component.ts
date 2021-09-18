@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   public registerForm = this.fb.group({
     nombre: ['james', [Validators.required, Validators.minLength(3)]],
     apellido: ['giraldo', Validators.required],
-    edad: [22, [Validators.required, Validators.min(10), Validators.max(100)]],
+    // edad: [22, [Validators.required, Validators.min(10), Validators.max(100)]],
     email: ['james@gmail.com', [Validators.required, Validators.email]],
     password: ['123456', [Validators.required]],
     password2: ['123456', [Validators.required]],
@@ -46,12 +46,11 @@ export class RegisterComponent implements OnInit {
 
   crearUsuario() {
     this.formSubmitted = true;
-    console.log(this.registerForm.value);
-    if (this.registerForm.invalid) {
-      return;
-    }
+    // console.log(this.registerForm.value);
+    if (this.registerForm.invalid) return;
+
     this.registerService.crearUsuario(this.registerForm.value).subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
       this.router.navigateByUrl('/dashboard');
       this.Toast.fire({
         icon: 'success',
@@ -77,7 +76,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  contrasenasValidas() {
+  contrasenasNoValidas() {
     const pass1 = this.registerForm.get('password').value;
     const pass2 = this.registerForm.get('password2').value;
     if (pass1 !== pass2 && this.formSubmitted) {

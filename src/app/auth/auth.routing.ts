@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutGuard } from '../guards/logout.guard';
 
 const routes: Routes = [
 
-    { path: 'login', component: LoginComponent,data: { titulo: 'Login' } },
-    { path: 'register', component: RegisterComponent, data: { titulo: 'Registrarse' } },
-    
+    { path: 'login', component: LoginComponent,  canActivate: [ LogoutGuard ],  data: { titulo: 'Login' } },
+    { path: 'register', component: RegisterComponent, canActivate: [ LogoutGuard ],  data: { titulo: 'Registrarse' } },
+
 ];
 
 @NgModule({

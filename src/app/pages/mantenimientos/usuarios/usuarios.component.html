@@ -4,8 +4,16 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Usuarios</h4>
-                    <input type="text" class="form-control" placeholder="Buscar usuario..."
-                    (keyup)="buscar( txtTermino.value )" #txtTermino />
+                    <!-- <input type="search" class="form-control" placeholder="Buscar usuario..."
+                    (keydown)="buscar( txtTermino.value )" #txtTermino />
+                     -->
+                    <form [formGroup]="buscarForm" (ngSubmit)="buscar( txtTermino.value )"
+                        class="input-group mb-2 mr-sm-2">
+                        <input #txtTermino type="search" class="form-control" placeholder="Buscar usuario...">
+                        <div class="input-group-prepend">
+                            <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -28,7 +36,14 @@
                     <h4 class="card-title">Total de usuarios ( {{ usuarios.length }} )</h4>
                     <h6 class="card-subtitle">Todos los usuarios en la aplicación</h6>
                     <div class="table-responsive mt-3">
-                        <table class="table table-bordered">
+                        <div *ngIf="!cargando && usuarios.length === 0"
+                            class="alert alert-warning text-center mt-3 animated fadeIn faster">
+                            <h4 class="alert-heading">No hay registros</h4>
+                            <p>
+                                <i class="fa fa-exclamation fa-2x"></i>
+                            </p>
+                        </div>
+                        <table *ngIf="!cargando && usuarios.length > 0" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -42,7 +57,7 @@
                             <tbody>
                                 <tr *ngFor="let usuario of usuarios">
                                     <td>
-                                        <a href="/">
+                                        <a [routerLink]="['/dashboard', 'usuario', usuario.id]">
                                             {{ usuario.nombre }}
                                         </a>
                                     </td>
@@ -57,8 +72,10 @@
                                         </select>
                                     </td>
                                     <td class="text-center">
-                                        <span class="label label-danger mr-2 cursor"> <i class="fa fa-pencil text-warning"></i> </span>
-                                        <span class="label label-info ml-2 cursor"> <i class="fa fa-trash-o text-danger"></i></span>
+                                        <span [routerLink]="['/dashboard', 'user', 'form', usuario.id]" class="label label-danger mr-2 cursor"> <i
+                                                class="fa fa-pencil text-warning"></i> </span>
+                                        <span class="label label-info ml-2 cursor"> <i
+                                                class="fa fa-trash-o text-danger"></i></span>
                                     </td>
                                 </tr>
                             </tbody>

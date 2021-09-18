@@ -8,6 +8,6 @@ export class Curso {
         public fecha_inicio: string,
         public fecha_fin: string,
         public state: boolean,
-    ) { }
+    ) {}
 
 }

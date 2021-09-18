@@ -2,26 +2,30 @@
 
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h4><i class="bi bi-person-circle"></i> {{ user.nombre }}</h4>
+        <h4><i class="bi bi-person-circle"></i>
+            {{ user.nombre  }} {{ user.apellido}}
+        </h4>
     </div>
     <ul class="list-unstyled components">
         <li class="nav-item" routerLinkActive="active">
-            <a href=""><i class="bi bi-house"></i> Home</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
             <a href=""><i class="bi bi-speedometer"></i> Dashboard</a>
         </li>
+        <div *ngIf="this.user.roles.length !== 0" >
+            <li class="nav-item" routerLinkActive="active">
+                <a routerLink="asignacion"><i class="bi bi-info-circle"></i> New Asignación </a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a routerLink="usuarios"><i class="bi bi-file-person"></i> Usuarios</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a routerLink="mantenimiento"><i class="bi bi-sliders"></i> Mantenimientos</a>
+            </li>
+        </div>
         <li class="nav-item" routerLinkActive="active">
-            <a href=""><i class="bi bi-gear-fill"></i> Settings</a>
+            <a routerLink="./perfil"><i class="bi bi-gear-fill"></i> Settings</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-            <a href=""><i class="bi bi-info-circle"></i> Services</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a routerLink="usuarios"><i class="bi bi-file-person"></i> Usuarios</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-            <a routerLink="mantenimiento"><i class="bi bi-sliders"></i> Mantenimientos</a>
+            <a routerLink="./password"><i class="fa fa-unlock-alt"></i> Password</a>
         </li>
         <li class="nav-item">
             <a class="cursor" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Salir</a>
