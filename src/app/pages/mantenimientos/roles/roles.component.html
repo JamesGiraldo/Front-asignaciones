@@ -1,0 +1,25 @@
+<div class="pb-4 pt-2">
+  <div class="row mb-2 animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+      <div class="alert alert-dark text-center">
+        <h4 class="alert-heading">Cargando</h4>
+        <i class="fa fa-spin fa fa-spinner fa-3x"></i>
+        <p class="mb-0">Por favor espere...</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!cargando" class="row row-cols-1 row-cols-md-2 g-4" >
+    <div class="col mb-2" *ngFor="let role of roles">
+      <div class="card h-100">
+        <div class="text-center img-fluid">
+            <i class="bi bi-person-bounding-box fa-5x"></i>
+        </div>
+        <div class="card-body">
+           <h5 *ngIf="role.role === 'ADMIN' " class="card-title text-center text-danger">{{ role.role |  uppercase  }}</h5>
+           <h5 *ngIf="role.role != 'ADMIN' " class="card-title text-center">{{ role.role |  uppercase }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

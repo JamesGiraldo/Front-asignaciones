@@ -1,0 +1,89 @@
+<div class="row py-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">{{ estudiante.nombre | uppercase }} {{ estudiante.apellido | uppercase }}</h4>
+                    </div>
+                    <div class="col-4">
+                        <span class="float-right" *ngFor="let role of estudiante.roles"> {{ role.role | uppercase }} </span>
+                    </div>
+                </div>
+                <h6 class="card-text"> Edad:  {{ estudiante.edad }} </h6>
+                <h6 class="card-text"> Email:  {{ estudiante.email }}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 animated fadeIn fast">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Futuro Perfil </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-5 animated fadeIn fast" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="card-title">Total de cursos ( {{ estudiante.cursos.length }} )</h4>
+                        <h6 class="card-subtitle">Todos los cursos asignados de {{ estudiante.nombre }} {{ estudiante.apellido }} </h6>
+                    </div>
+                </div>
+                <div class="table-responsive mt-3">
+                    <div *ngIf="!cargando && estudiante.cursos.length === 0"
+                        class="alert alert-warning text-center mt-3 animated fadeIn faster">
+                        <h4 class="alert-heading">No tiene cursos asignados</h4>
+                        <p>
+                            <i class="fa fa-exclamation fa-2x"></i>
+                        </p>
+                    </div>
+
+                    <div *ngIf="!cargando && estudiante.cursos.length > 0"  class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col mb-3 mt-3" *ngFor="let i = index; let curso of estudiante.cursos">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="">
+                                                <span [routerLink]="['/dashboard', 'curso', curso.id]"  class="label label-danger cursor"> <i class="fa fa-eye text-info"></i> </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-11">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h5 class="card-title"> {{ curso.nombre }} </h5>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="float-right">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <h6 class="text-muted">{{ curso.state  ? 'Activo' : 'Desactivado'}}</h6>
+                                                            </div>
+                                                            <div class="col">
+                                                                <i *ngIf="curso.state"  class="text-success bi bi-bookmark-check-fill"></i>
+                                                                <i *ngIf="!curso.state"  class="text-danger bi bi-bookmark-x-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body mb-3">
+                                        <small class=""> <b>Inicializa: </b>  {{ curso.fecha_inicio | date:'dd-MM-yyy' }}</small> <br>
+                                        <small class=""> <b>Termina: </b>  {{ curso.fecha_fin | date:'dd-MM-yyy' }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

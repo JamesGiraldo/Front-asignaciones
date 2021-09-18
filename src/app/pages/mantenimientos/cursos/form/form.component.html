@@ -1,0 +1,66 @@
+<div class="container pt-2 pb-5">
+    <div class="row mb-2">
+        <div class="col">
+            <h2 class="animated fadeIn fast">Guardar valor del curso</h2>
+        </div>
+        <div class="col">
+            <div class="float-right">
+                <button (click)="onRegresar()" title="Cursos" class="btn botonsito btn-primary">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5 animated fadeIn fast">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form (ngSubmit)="EnviarCurso()" [formGroup]="Formulario" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                    <input formControlName="nombre" class="form-control" id="nombre" type="search"
+                                        placeholder="Nombre del curso" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('nombre')">
+                                        * El nombre es obligatorio
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horario" class="col-form-label">Horario:</label>
+                                    <input formControlName="horario" type="search" name="horario" class="form-control" id="horario"
+                                        placeholder="Indique el tipo de horario Ejmp: Mixto, Diurno, Nocturno" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('horario')">
+                                        * El horario es obligatorio
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_inicio" class="col-form-label">Fecha de inicio:</label>
+                                    <input formControlName="fecha_inicio" [value]="fechaInicio" type="date" name="fecha_inicio" class="form-control" id="fecha_inicio" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('fecha_inicio')">
+                                        * La fecha de inicio es obligatoria
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_fin" class="col-form-label">Fecha fin:</label>
+                                    <input formControlName="fecha_fin" [value]="fechaFin" name="fecha_fin" type="date" class="form-control" id="fecha_fin" />
+                                    <span class="animated fadeIn text-danger" *ngIf="campoValido('fecha_fin')">
+                                        * La fecha de fin de curso es obligatoria
+                                    </span>
+                                </div>
+                                <div class="checkbox checkbox-primary pull-left p-t-0">
+                                    <input formControlName="state" name="state" id="state" type="checkbox" class="mr-2 filled-in chk-col-light-blue">
+                                    <label for="state"> Estado </label>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-block btn-info">Guardar cambios</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

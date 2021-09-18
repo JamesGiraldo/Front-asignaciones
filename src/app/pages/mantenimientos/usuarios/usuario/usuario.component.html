@@ -1,0 +1,18 @@
+<div class="row py-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{ usuario.nombre | uppercase }} {{ usuario.apellido | uppercase }}</h4>
+                <h6 class="card-text"> {{ usuario.edad }} - {{ usuario.email }}</h6>
+                <span *ngFor="let role of usuario.roles"> {{ role.role }} </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 animated fadeIn fast">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Futuro Perfil </h4>
+            </div>
+        </div>
+    </div>
+</div>
