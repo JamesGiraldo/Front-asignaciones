@@ -2,9 +2,16 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">{{ usuario.nombre | uppercase }} {{ usuario.apellido | uppercase }}</h4>
-                <h6 class="card-text"> {{ usuario.edad }} - {{ usuario.email }}</h6>
-                <span *ngFor="let role of usuario.roles"> {{ role.role }} </span>
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">{{ usuario.nombre | uppercase }} {{ usuario.apellido | uppercase }}</h4>
+                    </div>
+                    <div class="col-4">
+                        <span class="float-right" *ngFor="let role of usuario.roles"> {{ role.role | uppercase }} </span>
+                    </div>
+                </div>
+                <h6 class="card-text"> Edad:  {{ usuario.edad }} </h6>
+                <h6 class="card-text"> Email:  {{ usuario.email }}</h6>
             </div>
         </div>
     </div>
