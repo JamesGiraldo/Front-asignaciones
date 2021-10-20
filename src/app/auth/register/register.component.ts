@@ -16,12 +16,12 @@ export class RegisterComponent implements OnInit {
   public formSubmitted: boolean = false;
 
   public registerForm = this.fb.group({
-    nombre: ['james', [Validators.required, Validators.minLength(3)]],
-    apellido: ['giraldo', Validators.required],
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+    apellido: ['', Validators.required],
     // edad: [22, [Validators.required, Validators.min(10), Validators.max(100)]],
-    email: ['james@gmail.com', [Validators.required, Validators.email]],
-    password: ['123456', [Validators.required]],
-    password2: ['123456', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    password2: ['', [Validators.required]],
     terminos: [false, Validators.required]
   }, {
     validators: this.passwordIguales('password', 'password2')
@@ -49,8 +49,23 @@ export class RegisterComponent implements OnInit {
     // console.log(this.registerForm.value);
     if (this.registerForm.invalid) return;
 
+    // dispara un alert cargando
+    Swal.fire({
+      title: this.registerForm.get('nombre').value.toUpperCase() + ' ' + this.registerForm.get('apellido').value.toUpperCase(),
+      text: 'Espere por favor...',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+
+    // esto es el icono de sale dando vueltas como cargando
+    Swal.showLoading();
+
     this.registerService.crearUsuario(this.registerForm.value).subscribe(resp => {
       // console.log(resp);
+
+      // si todo esta ok cerramos en alert anterior
+      Swal.close();
+
       this.router.navigateByUrl('/dashboard');
       this.Toast.fire({
         icon: 'success',

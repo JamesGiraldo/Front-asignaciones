@@ -29,6 +29,8 @@ import { FormPostsComponent } from './mantenimientos/posts/form/form.component';
 import { RolesComponent } from './mantenimientos/roles/roles.component';
 import { CursoComponent } from './mantenimientos/cursos/curso/curso.component';
 
+import { ChatComponent } from './chat/chat.component';
+
 const childRoutes: Routes = [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
       { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil' } },
@@ -53,6 +55,8 @@ const childRoutes: Routes = [
       { path: 'posts', component: PostsComponent, data: { titulo: 'Publicaciones' } },
       { path: 'post/:id', component: PostComponent, data: { titulo: 'Publicacion' } },
       { path: 'post/form/:id', component: FormPostsComponent, data: { titulo: 'Publicacion' } },
+
+      { path: 'chat', component: ChatComponent, data: { titulo: 'Chat' } },
 
       { path: 'roles', component: RolesComponent, data: { titulo: 'Roles' } },
 ]

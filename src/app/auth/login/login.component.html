@@ -7,14 +7,20 @@
                     <form (ngSubmit)="login_in()" autocomplete="off" [formGroup]="loginForm">
                         <div class="form-group">
                             <label for="email" class="float-left">Email*</label>
-                            <input name="email" type="email" class="form-control" required id="email"
+                            <input name="email" type="email" formControlName="email" class="form-control" required id="email"
                                 placeholder="Ingrese correo electronico" formControlName="email" />
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('email')">
+                                * El correo es obligatorio
+                            </span>
                         </div>
 
                         <div class="form-group">
                             <label for="contraseña" class="float-left">Contraseña*</label>
                             <input name="password" type="password" class="form-control" required id="password"
                                 placeholder="Ingrese su contraseña" formControlName="password" minlength="6"  />
+                            <span class="animated fadeIn text-danger" *ngIf="campoValido('password')">
+                                * La contraseña es obligatoria
+                            </span>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="remember"

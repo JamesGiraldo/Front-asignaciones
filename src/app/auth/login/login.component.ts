@@ -47,6 +47,21 @@ export class LoginComponent implements OnInit {
   }
 
   login_in() {
+
+    this.formSubmitted = true;
+    // console.log(this.registerForm.value);
+    if (this.loginForm.invalid) return;
+
+    // dispara un alert cargando
+    Swal.fire({
+      title: this.loginForm.value.email.toUpperCase(),
+      text: 'Espere por favor...',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+    // esto es el icono de sale dando vueltas como cargando
+    Swal.showLoading();
+
     this.authService.sing_in(this.loginForm.value).subscribe(resp => {
 
       if (this.loginForm.get('remember').value) {
@@ -54,6 +69,10 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.removeItem('email');
       }
+
+      // si todo esta ok cerramos en alert anterior
+      Swal.close();
+
       this.router.navigateByUrl('/dashboard');
       this.Toast.fire({
         icon: 'success',
@@ -71,6 +90,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+  }
+
+  campoValido(campo: string): boolean {
+    if (this.loginForm.get(campo).invalid && this.formSubmitted) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   irRegister() {

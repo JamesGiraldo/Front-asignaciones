@@ -37,6 +37,8 @@ import { PostComponent } from './mantenimientos/posts/post/post.component';
 
 import { AsignacionComponent } from './mantenimientos/asignacion/asignacion.component';
 
+import { ChatComponent } from './chat/chat.component';
+
 import { RolesComponent } from './mantenimientos/roles/roles.component';
 
 @NgModule({
@@ -58,7 +60,8 @@ import { RolesComponent } from './mantenimientos/roles/roles.component';
     RolesComponent,
     PerfilComponent,
     PasswordComponent,
-    AsignacionComponent
+    AsignacionComponent,
+    ChatComponent
   ],
   exports: [
     DashboardComponent,
@@ -78,7 +81,8 @@ import { RolesComponent } from './mantenimientos/roles/roles.component';
     RolesComponent,
     PerfilComponent,
     PasswordComponent,
-    AsignacionComponent
+    AsignacionComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,9 @@
         <li class="nav-item" routerLinkActive="active">
             <a href=""><i class="bi bi-speedometer"></i> Dashboard</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+            <a routerLink="chat"><i class="fa fa-comments"></i> Chat </a>
+        </li>
         <div *ngIf="this.user.roles.length !== 0" >
             <li class="nav-item" routerLinkActive="active">
                 <a routerLink="asignacion"><i class="bi bi-info-circle"></i> New Asignación </a>
