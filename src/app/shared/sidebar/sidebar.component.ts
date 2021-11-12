@@ -25,9 +25,9 @@ export class SidebarComponent implements OnInit {
     // this.usuariologeado()
   }
   ngOnInit(): void {
-    if ( this.user.roles.length !== 0 ){
-      console.log( "si tienes roles" )
-    }
+    // if ( this.user.roles.length !== 0 ){
+    //   // console.log( "si tienes roles" )
+    // }
   }
 
   // usuariologeado(){

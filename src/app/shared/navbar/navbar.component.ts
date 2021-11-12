@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 import Swal from 'sweetalert2';
 
@@ -16,17 +17,25 @@ declare var $: any;
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   public user: Usuario;
   public titulo: string = "";
+  /* Socket */
+  public socketInstance;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private websocketService: WebsocketService) {
     this.user = this.authService.usuario;
     this.getArgumentosRuta()
   }
 
   ngOnInit(): void {
+    this.socketInstance = this.websocketService.of( 'users' );
+    this.RequestsSocket();
+  }
+
+  ngOnDestroy() {
+    this.websocketService.disconnect( 'users' );
   }
 
   logout() {
@@ -67,5 +76,26 @@ export class NavbarComponent implements OnInit {
       // document.getElementById("bodyContent").style.width = "100%";
     });
   }
+
+  private RequestsSocket(){
+    this.websocketService.fromToEvent(this.socketInstance, 'new-user').subscribe( () => {
+        this.Toast.fire({
+          icon: 'success',
+          title: `Nuevo usuario en el sistema!`
+        });
+    });
+  }
+
+  public  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  });
 
 }

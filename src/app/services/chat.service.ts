@@ -14,15 +14,15 @@ export class ChatService {
 
   sendMessage( messageInfo  ){
 
-    this.chat.push( messageInfo );
-    this.socket.io.emit('sendMessage', messageInfo);
+    // this.chat.push( messageInfo );
+    // this.socket.io.emit('sendMessage', messageInfo);
   }
 
   onReceviMessage() {
-    this.socket.io.on('reciveMessage', (messageInfo) => {
-      messageInfo.messageType = 1
-      this.chat.push( messageInfo );
-    })
+    // this.socket.io.on('reciveMessage', (messageInfo) => {
+    //   messageInfo.messageType = 1
+    //   this.chat.push( messageInfo );
+    // })
   }
 
 

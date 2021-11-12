@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 import { Post } from '../models/post.model';
@@ -18,9 +18,7 @@ export class PostsService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getPosts() {
-    return this.http.get(`${base_url}/posts`, this.authService.headers).pipe(
-      delay(100)
-    );
+    return this.http.get(`${base_url}/posts`, this.authService.headers);
   }
 
   ShowPost(id: string) {

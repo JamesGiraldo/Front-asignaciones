@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from './../../../services/websocket.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { PostsService } from '../../../services/posts.service';
 import { BusquedasService } from '../../../services/busquedas.service';
@@ -12,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
 
   public cargando: boolean = true;
   public posts: Post[] = [];
@@ -34,18 +35,27 @@ export class PostsComponent implements OnInit {
     }
   });
 
-  constructor(private postsService: PostsService, private busquedasService: BusquedasService, private modalService: ModalService, private fb: FormBuilder) { }
+  /* Socket */
+  public socketInstance;
+
+  constructor(private postsService: PostsService, private busquedasService: BusquedasService, private modalService: ModalService, private fb: FormBuilder, private websocketService: WebsocketService) { }
 
   ngOnInit(): void {
+    this.socketInstance = this.websocketService.of( 'posts' );
     this.cargarPosts();
+    this.RequestsSocket();
+  }
+
+  ngOnDestroy() {
+    this.websocketService.disconnect( 'posts' );
   }
 
   cargarPosts() {
     this.cargando = true;
     this.postsService.getPosts().subscribe((posts: any) => {
+      this.cargando = false;
       this.posts = posts;
       this.postsTemporales = posts;
-      this.cargando = false;
     })
   }
 
@@ -88,5 +98,17 @@ export class PostsComponent implements OnInit {
 
   cargarModal() {
     this.modalService.abrirModal();
+  }
+
+  private RequestsSocket(){
+    this.websocketService.fromToEvent(this.socketInstance, 'new-post').subscribe( () => {
+      this.Toast.fire({
+        icon: 'success',
+        title: `Nueva publicacion`
+      });
+      this.cargarPosts();
+    });
+    this.websocketService.fromToEvent(this.socketInstance, 'destroy-post').subscribe( () => this.cargarPosts() );
+    this.websocketService.fromToEvent(this.socketInstance, 'update-post').subscribe( () =>  this.cargarPosts() );
   }
 }
